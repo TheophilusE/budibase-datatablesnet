@@ -11,11 +11,12 @@
   export let parSortBy
   export let columns
   export let tableEvent
+  export let searchableColumns
 
   const { styleable } = getContext("sdk")
   const component = getContext("component")
 </script>
 
 <div use:styleable={$component.styles}>
-  <Table {search} {tableEvent} {resultPage} {pagination} {parSearchableColumns} {dataProvider} {parSortOrder} {parRowsPerPage} {parSortBy} {columns} />
+  <Table {search} {tableEvent} {resultPage} {pagination} {parSearchableColumns} {dataProvider} {parSortOrder} {parRowsPerPage} {parSortBy} {columns} {searchableColumns} />
 </div>

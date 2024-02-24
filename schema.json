@@ -21,6 +21,13 @@
         "nested": true
       },
       {
+        "type": "columns",
+        "label": "Searchable Columns",
+        "key": "searchableColumns",
+        "dependsOn": "dataProvider",
+        "nested": true
+      },
+      {
         "type": "color",
         "label": "Background Color",
         "key": "backgroundColor",
@@ -95,5 +102,5 @@
       }
     ]
   }
-  
+
 }

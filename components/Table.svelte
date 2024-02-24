@@ -1,7 +1,7 @@
 <script>
     import { Engine, functionCreateDatatable, Pagination, RowsPerPage, Search, Sort } from 'svelte-datatables-net';
     import {onMount} from "svelte"
-    export let search   
+    export let search
     export let resultPage
     export let pagination
     export let dataProvider
@@ -10,7 +10,8 @@
     export let columns
     export let parSortBy
     let objectDatatable
-    export let tableEvent 
+    export let tableEvent
+    export let searchableColumns = []
 
     let th = []
     let displayNames = []
@@ -23,7 +24,7 @@
             })
             objectDatatable =  functionCreateDatatable({
                 parData: dataProvider.rows ?? [],
-                parSearchableColumns: ['title', 'description'],
+                parSearchableColumns: searchableColumns,
                 parRowsPerPage: '5',
                 parSearchString: '',
                 parSortBy: 'title',
@@ -31,13 +32,13 @@
             });
         }
     })
-    
+
 
     function handleClick(content){
         console.log(content, 'handle clickkkkkkkkkkk')
         tableEvent({data : JSON.parse(JSON.stringify(content))})
     }
-    
+
 </script>
 
 <svelte:head>
@@ -73,7 +74,7 @@
             </p>
         {/if}
     </div>
-    
+
     <table class="table table-striped"  >
         <thead>
             <tr  >
@@ -83,7 +84,7 @@
             </tr>
         </thead>
         <tbody>
-            {#each objectDatatable.arrayData as row}              
+            {#each objectDatatable.arrayData as row}
                 <tr on:click={handleClick(row)}>
                     {#each  th as thItem}
                         <td >
