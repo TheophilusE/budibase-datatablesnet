@@ -5,16 +5,17 @@
     export let resultPage
     export let pagination
     export let dataProvider
+    export let searchableColumns = []
     export let parRowsPerPage
     export let parSortOrder
     export let columns
     export let parSortBy
     let objectDatatable
     export let tableEvent
-    export let searchableColumns = []
 
     let th = []
     let displayNames = []
+    let parSearchableColumns = []
 
     onMount(()=>{
         if(dataProvider.rows){
@@ -22,9 +23,12 @@
                 th.push(element.name)
                 displayNames.push(element.displayName)
             })
+            searchableColumns.forEach(element => {
+                parSearchableColumns.push(element.displayName)
+            })
             objectDatatable =  functionCreateDatatable({
                 parData: dataProvider.rows ?? [],
-                parSearchableColumns: searchableColumns,
+                parSearchableColumns: parSearchableColumns,
                 parRowsPerPage: '5',
                 parSearchString: '',
                 parSortBy: 'title',

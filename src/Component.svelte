@@ -18,5 +18,5 @@
 </script>
 
 <div use:styleable={$component.styles}>
-  <Table {search} {tableEvent} {resultPage} {pagination} {parSearchableColumns} {dataProvider} {parSortOrder} {parRowsPerPage} {parSortBy} {columns} {searchableColumns} />
+  <Table dataProvider={dataProvider} search={search} resultPage={resultPage} pagination={pagination} searchableColumns={searchableColumns} parRowsPerPage={parRowsPerPage} parSortOrder={parSortOrder} columns={columns} parSortBy={parSortBy} tableEvent={tableEvent} />
 </div>
