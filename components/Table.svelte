@@ -5,7 +5,7 @@
     export let resultPage
     export let pagination
     export let dataProvider
-    export let searchableColumns = []
+    export let searchableColumns
     export let parRowsPerPage
     export let parSortOrder
     export let columns
@@ -15,7 +15,6 @@
 
     let th = []
     let displayNames = []
-    let parSearchableColumns = []
 
     onMount(()=>{
         if(dataProvider.rows){
@@ -23,12 +22,9 @@
                 th.push(element.name)
                 displayNames.push(element.displayName)
             })
-            searchableColumns.forEach(element => {
-                parSearchableColumns.push(element.displayName)
-            })
-            objectDatatable =  functionCreateDatatable({
+            objectDatatable = functionCreateDatatable({
                 parData: dataProvider.rows ?? [],
-                parSearchableColumns: parSearchableColumns,
+                parSearchableColumns: searchableColumns,
                 parRowsPerPage: '5',
                 parSearchString: '',
                 parSortBy: 'title',
@@ -36,7 +32,6 @@
             });
         }
     })
-
 
     function handleClick(content){
         console.log(content, 'handle clickkkkkkkkkkk')
@@ -81,7 +76,7 @@
 
     <table class="table table-striped"  >
         <thead>
-            <tr  >
+            <tr>
                 {#each displayNames as item}
                     <th><Sort bind:propDatatable={objectDatatable} propColumn={item}>{item}</Sort></th>
                 {/each}
@@ -90,8 +85,8 @@
         <tbody>
             {#each objectDatatable.arrayData as row}
                 <tr on:click={handleClick(row)}>
-                    {#each  th as thItem}
-                        <td >
+                    {#each th as thItem}
+                        <td>
                             {row[thItem]}
                         </td>
                     {/each}
